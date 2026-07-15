@@ -1,0 +1,20 @@
+# CH55x / CH55xduino USB access rules
+#
+# Install with:
+#   sudo cp docs/udev/99-ch55x.rules /etc/udev/rules.d/
+#   sudo udevadm control --reload-rules
+#   sudo udevadm trigger
+#
+# Then unplug and reconnect the board.
+
+# CH55xduino bootloader / USB device, shown by lsusb as:
+#   1209:c550 Generic CH55xduino
+SUBSYSTEM=="usb", ATTR{idVendor}=="1209", ATTR{idProduct}=="c550", MODE="0666", TAG+="uaccess"
+
+# CH55xduino CDC ACM serial interface, shown by dmesg as:
+#   cdc_acm ... ttyACM0: USB ACM device
+SUBSYSTEM=="tty", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="c550", MODE="0666", TAG+="uaccess", SYMLINK+="ch55xduino"
+
+# WCH ISP bootloader used by some CH55x tools/scripts:
+#   4348:55e0
+SUBSYSTEM=="usb", ATTR{idVendor}=="4348", ATTR{idProduct}=="55e0", MODE="0666", TAG+="uaccess"

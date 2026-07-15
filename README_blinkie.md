@@ -123,6 +123,119 @@ make flash
 
 This runs `wchisp flash build/ch552_blink.hex`.
 
+When flashing succeeds, output should look similar to this:
+
+```text
+10:45:23 [INFO] Opening USB device #0
+10:45:23 [INFO] Chip: CH552[0x5211] (Code Flash: 14KiB, Data EEPROM: 128 Bytes)
+10:45:23 [INFO] Chip UID: B7-6E-EE-BD-00-00-00-00
+10:45:23 [INFO] BTVER(bootloader ver): 02.50
+10:45:23 [INFO] Read /home/fontys/ch552_blink/build/ch552_blink.hex as IntelHex format
+10:45:23 [INFO] Firmware size: 1024
+10:45:23 [INFO] Erasing...
+10:45:24 [INFO] Erase done
+10:45:24 [INFO] Writing to code flash...
+10:45:24 [INFO] Code flash 1024 bytes written
+10:45:25 [INFO] Verifying...
+10:45:25 [INFO] Verify OK
+10:45:25 [INFO] Now reset device and skip any communication errors
+```
+
+This is the most important milestone in the project. At this point the whole
+chain has been proven: SDCC built the program, `packihx` produced a valid Intel
+HEX file, Linux can access the USB bootloader, `wchisp` can erase/write/verify
+flash, and the CH552 runs the new firmware. If the LED blinks, you know the
+board, bootloader, build system and software are all in a good state. From here
+you can start working on the actual application with confidence.
+
+### USB permissions on Linux
+
+If the board is visible with `lsusb` but flashing fails because of permissions, install the udev rule included in this repository:
+
+```bash
+sudo cp docs/udev/99-ch55x.rules /etc/udev/rules.d/
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+```
+
+Then unplug and reconnect the board.
+
+To verify that the bootloader is visible, put the board in ISP/bootloader mode
+and run:
+
+```bash
+wchisp -u info
+```
+
+Expected output looks similar to this:
+
+```text
+10:37:15 [INFO] Opening USB device #0
+10:37:15 [INFO] Chip: CH552[0x5211] (Code Flash: 14KiB, Data EEPROM: 128 Bytes)
+10:37:15 [INFO] Chip UID: B7-6E-EE-BD-00-00-00-00
+10:37:15 [INFO] BTVER(bootloader ver): 02.50
+10:37:15 [INFO] Current config registers: ffffffffffffffffff52808000020500b76eeebd00000000
+REVERSED: 0xFFFFFFFF
+WPROTECT: 0xFFFFFFFF
+  [0:0]   NO_KEY_SERIAL_DOWNLOAD 0x1 (0b1)
+    `- Enable
+  [1:1]   DOWNLOAD_CFG 0x1 (0b1)
+    `- P4.6 / P15 / P3.6(Default set)
+GLOBAL_CFG: 0x808052FF
+  [15:15] CODE_PROTECT 0x0 (0b0)
+    `- Forbid code & data protection
+  [14:14] NO_BOOT_LOAD 0x1 (0b1)
+    `- Boot from 0xf400 Bootloader
+  [13:13] EN_LONG_RESET 0x0 (0b0)
+    `- Short reset
+  [12:12] XT_OSC_STRONG 0x1 (0b1)
+    `- Enhanced
+  [11:11] EN_P5.7_RESET 0x0 (0b0)
+    `- Forbid
+  [10:10] EN_P0_PULLUP 0x0 (0b0)
+    `- Forbid
+  [9:8]   RESERVED 0x2 (0b10)
+    `- Default
+  [7:0]   RESERVED 0xFF (0b11111111)
+    `- Default
+```
+
+The exact UID and timestamps will differ. The important parts are that the
+device opens, the chip is detected as `CH552`, and the bootloader version is
+reported.
+
+The rule covers the CH55xduino USB ID:
+
+```text
+1209:c550 Generic CH55xduino
+```
+
+When the firmware runs, Linux may also expose the board as a serial device:
+
+```text
+ttyACM0: USB ACM device
+```
+
+The udev rule also covers that `ttyACM*` interface and creates a stable symlink:
+
+```text
+/dev/ch55xduino
+```
+
+It also covers the WCH ISP bootloader ID used by some tools:
+
+```text
+4348:55e0
+```
+
+Temporary workaround for the currently connected device only:
+
+```bash
+sudo chmod 666 /dev/bus/usb/001/006
+```
+
+Replace `001/006` with the bus and device numbers shown by `lsusb`.
+
 ### Flash using Windows
 
 The official **WCHISPTool** can also be used.
