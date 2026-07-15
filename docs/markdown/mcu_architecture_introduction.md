@@ -10,6 +10,10 @@ You have probably already made an LED blink on an Arduino, or read a sensor valu
 
 This document opens the hood. We will use a small, cheap, and refreshingly simple chip — the **CH552** — as our example machine. It is modern enough to be useful (it even speaks USB), but its brain is based on the **8051**, a design from 1980 that is so simple you can hold the whole thing in your head. That makes it perfect for learning.
 
+After this introduction, the next planned step is a small modern RISC-V microcontroller from the same vendor family, for example the **CH32V003F4P6**. It is roughly as inexpensive, but it introduces a 32-bit RISC-V core, a different reset flow, a vector table, and more modern peripherals. The same questions return: where does the CPU start, how does startup code reach `main`, how is the vector table laid out, how do we configure one GPIO pin, and how do we then move toward richer peripherals?
+
+The classic Arduino Uno with the AVR ATmega328P is not the main path in this learning line. It is useful background, but there are already many tutorials for it and the Arduino framework hides many architectural details. Students can explore AVR/Arduino independently if they want to compare.
+
 By the end you should understand, in concrete terms:
 
 - what a microcontroller actually *is*, and how it differs from the computer on your desk;

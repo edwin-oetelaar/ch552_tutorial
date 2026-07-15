@@ -18,6 +18,10 @@ Je hebt waarschijnlijk al eens een ledje laten knipperen op een Arduino, of een 
 
 Dit document opent de motorkap. We gebruiken als voorbeeldmachine een kleine, goedkope en verfrissend eenvoudige chip — de **CH552**. Hij is modern genoeg om nuttig te zijn (hij spreekt zelfs USB), maar zijn brein is gebaseerd op de **8051**, een ontwerp uit 1980 dat zó eenvoudig is dat je het hele ding in je hoofd kunt houden. Dat maakt hem perfect om van te leren.
 
+Na deze introductie is een logische vervolgstap een kleine moderne RISC-V chip van dezelfde leverancier, bijvoorbeeld de **CH32V003F4P6**. Die chip is ongeveer even goedkoop, maar architectonisch rijker: een 32-bit RISC-V core, een andere reset-flow, een vector table en modernere peripherals. De bedoeling is eerst de eenvoudige CH552 echt te begrijpen, en daarna dezelfde vragen opnieuw te stellen op de CH32V003: waar start de CPU, hoe komt C bij `main`, hoe werkt de vector table, hoe configureer je minimale GPIO, en hoe bestuur je daarna modernere peripherals?
+
+De klassieke Arduino Uno met AVR ATmega328P is bewust niet de hoofdroute. Daarvoor bestaan al veel tutorials, en de Arduino-laag verbergt vaak precies de architectuurdetails die we hier zichtbaar willen maken. Wie wil kan AVR/Arduino zelf naast deze leerlijn leggen.
+
 Aan het eind zou je in concrete termen moeten begrijpen:
 
 - wat een microcontroller eigenlijk *is*, en hoe hij verschilt van de computer op je bureau;

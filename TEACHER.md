@@ -2,6 +2,10 @@
 
 Dit document biedt didactische handvatten, discussiepunten en achtergrondinformatie voor de docent om de concepten in het `ch552_blink` project uit te leggen aan studenten.
 
+Dit project is de eerste stap in een leerlijn. De CH552 laat studenten de basis zien op een kleine 8052-achtige machine. Daarna kan dezelfde aanpak worden herhaald op een moderne goedkope RISC-V chip van WCH, bijvoorbeeld de **CH32V003F4P6**.
+
+Gebruik de Arduino Uno / AVR ATmega328P niet als hoofdroute in deze leerlijn. Daarvoor bestaan al veel online tutorials en de Arduino-laag verbergt juist veel architectuurdetails. Studenten mogen die route zelfstandig verkennen, maar de kernvergelijking hier is: eenvoudige 8052-architectuur eerst, daarna moderne RISC-V.
+
 *   **Datasheet-referentie:** `docs/datasheets/ch552_datasheet_en.pdf`
 *   **Intel HEX documentatie:** `docs/markdown/hex_format.md`
 
@@ -76,3 +80,14 @@ Gebruik de code in `src/main.c` en `include/ch552.h` om de volgende concepten ta
 2.  **Verander de Pin:** Laat de studenten in de datasheet (of online pinout) zoeken naar een andere pin (bijvoorbeeld `P1.1`) en laat hen de registers `P1_MOD_OC` en `P1_DIR_PU` correct instellen in `src/main.c` om een externe LED op een breadboard te laten knipperen.
 3.  **Inspecteer de ASM:** (Optioneel) SDCC genereert bij compilatie ook een `.asm` bestand (bijv. `build/main.asm`). Open dit bestand en laat de studenten de `delay_ms` functie in assembly opzoeken. Wijs ze op de hoeveelheid instructies die nodig zijn voor de 16-bit vergelijking.
 4.  **Optimalisatie:** Verander de delay variabelen naar `unsigned char` (8-bit) en ervaar het verschil in snelheid en code-grootte.
+
+## Vervolg: CH32V003 / RISC-V
+
+De tweede introductie kan dezelfde didactische volgorde gebruiken, maar dan op de CH32V003F4P6:
+
+1.  **Reset en opstart:** Waar begint de RISC-V core na reset, en welke code draait voor `main`?
+2.  **Vector table:** Waar staan exception- en interrupt-entrypoints, en hoe verschilt dit van de 8052-vectoren?
+3.  **Minimale GPIO:** Configureer een enkele pin zonder framework en vergelijk de registertoegang met de CH552.
+4.  **Moderne peripherals:** Ga daarna pas naar timers, systick/interrupts, communicatieperipherals en DMA-achtige hardwareblokken.
+
+Het doel is dat studenten herkennen dat de vragen hetzelfde blijven, terwijl de architectuur moderner en rijker wordt.

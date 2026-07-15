@@ -16,6 +16,10 @@ The project is intended for teaching basic concepts in:
 
 The CH552 is based on the MCS-51/8051 architecture and has very limited resources. This makes it a useful platform for learning how a microcontroller works without hiding the hardware behind large frameworks.
 
+This project is intended as the first step before moving to a small modern RISC-V microcontroller such as the **WCH CH32V003F4P6**. The CH32V003 is also very inexpensive, but it has a 32-bit RISC-V core, a different startup model, a vector table, and more modern peripherals. Understanding the CH552 first makes those differences easier to see.
+
+The course does not use the classic Arduino Uno / AVR ATmega328P as the main route. That platform is useful, but there are already many tutorials for it and the Arduino framework hides much of the architecture. Students can explore AVR/Arduino independently if they want extra background.
+
 ---
 
 ## 1. Compiler
@@ -131,6 +135,8 @@ The official **WCHISPTool** can also be used.
 ---
 
 ## 5. Educational Concepts
+
+The concepts in this first CH552 lab will return in the later CH32V003/RISC-V introduction. The second chip should follow the same order: minimal startup, reset entry, vector table, basic GPIO, then deeper work with modern peripherals.
 
 ### Special Function Registers
 

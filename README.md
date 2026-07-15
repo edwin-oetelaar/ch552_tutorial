@@ -8,6 +8,8 @@ This repository is an educational project for learning computer architecture, em
 
 The CH552 is a small and resource-constrained microcontroller based on the 8051/8052 architecture, with additional peripherals such as USB, timers, GPIO, UART, SPI, and ADC functionality.
 
+This repository is the first step in a longer learning path. After the CH552, the intended next step is a small modern RISC-V microcontroller from the same vendor family, for example the **WCH CH32V003F4P6**. It is roughly in the same low-cost class, but its CPU architecture, startup flow, interrupt model, and peripherals are more modern and more complex.
+
 Its limited memory and simple architecture make it highly suitable for education. Students cannot rely on large frameworks or excessive abstraction. They must understand:
 
 * how the processor starts;
@@ -28,6 +30,8 @@ The project uses:
 * datasheets and reference manuals as primary documentation.
 
 The goal is not merely to make the board do something. The goal is to understand why it works.
+
+The older Arduino Uno / AVR ATmega328P route is deliberately not the main path here. It is well documented elsewhere and students can explore those tutorials independently. This course instead compares a simple 8052-class system with a modern low-cost RISC-V system, while keeping the same low-level engineering discipline.
 
 ---
 
@@ -81,6 +85,8 @@ Students must consider:
 
 This makes the CH552 a practical platform for learning both computer architecture and embedded software engineering.
 
+The CH552 also prepares students for the CH32V003/RISC-V follow-up. On the CH552, concepts such as reset, startup code, memory spaces, interrupt vectors, GPIO registers, compiler output, and flash files are small enough to inspect directly. Once those concepts are understood, the CH32V003 can be introduced as the modern version of the same questions: where does the CPU start, how is the vector table laid out, how does C reach `main`, how is one GPIO pin configured, and how do more capable peripherals change the software design?
+
 ---
 
 # Learning Outcomes
@@ -104,6 +110,7 @@ After completing the project, a student should be able to:
 * use Git for incremental development;
 * use automated builds and tests where possible;
 * review AI-generated code instead of trusting it blindly.
+* explain why the CH552/8052 project is a stepping stone toward CH32V003/RISC-V development.
 
 ---
 
@@ -259,6 +266,17 @@ The numbered examples represent the intended learning order.
 ---
 
 # Learning Path
+
+This repository covers the first stage: **CH552 / 8052-class architecture**. A later second introduction should use the **CH32V003F4P6 / RISC-V** and repeat the same educational pattern on a modern core.
+
+The intended progression is:
+
+1. CH552: simple 8-bit architecture, explicit SFRs, small memory, SDCC, Intel HEX, USB bootloader.
+2. CH32V003F4P6: minimal RISC-V system, reset entry, vector table, startup code, GPIO, and then modern peripherals.
+
+This makes the comparison concrete. Students first learn the ideas where the machine is small enough to inspect completely, then revisit the same ideas on a faster 32-bit RISC-V microcontroller.
+
+The old AVR ATmega328P/Arduino path is not used as the central teaching line. It remains useful background material, but there are already many online tutorials for it and most of them hide the architecture behind framework calls.
 
 ## 0. Processor Reset and Boot Vector
 
