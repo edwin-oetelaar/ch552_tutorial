@@ -6,6 +6,10 @@ met twee gratis tools:
 1. **pandoc** — zet Markdown om naar HTML.
 2. **WeasyPrint** — zet die HTML met de stylesheet `scripts/pdf_style.css` om naar PDF.
 
+De build gebruikt ook `scripts/pdf_template.html`. Die template is bewust minimaal,
+zodat Pandoc geen eigen browsergerichte default-CSS injecteert. Daardoor blijven
+pagina-afmetingen, marges en paginatelling beter reproduceerbaar.
+
 Je bewerkt dus altijd de `.md`, draait het script, en krijgt een verse PDF.
 
 ## Eenmalig installeren
@@ -83,5 +87,6 @@ Tips voor plaatjes:
 | `pdf/*.pdf` | Gegenereerde PDF's |
 | `afbeeldingen/` | Afbeeldingen voor Markdown en PDF |
 | `scripts/pdf_style.css` | Opmaak/stijl van de PDF |
+| `scripts/pdf_template.html` | Minimale Pandoc-template voor stabiele PDF-layout |
 | `scripts/build_pdf.sh` | Buildscript voor Linux/macOS |
 | `scripts/build_pdf.ps1` | Buildscript voor Windows/PowerShell |

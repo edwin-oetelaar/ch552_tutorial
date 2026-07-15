@@ -9,6 +9,13 @@
   }
 }
 
+html,
+body {
+  margin: 0;
+  padding: 0;
+  max-width: none;
+}
+
 body {
   font-family: 'DejaVu Serif', Georgia, serif;
   font-size: 10.5pt;
@@ -66,7 +73,6 @@ pre {
   line-height: 1.4;
   padding: 10px 12px;
   border-radius: 6px;
-  overflow-x: auto;
   white-space: pre-wrap;
   word-wrap: break-word;
   page-break-inside: avoid;

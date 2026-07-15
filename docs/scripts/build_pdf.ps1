@@ -28,6 +28,7 @@ $DocsDir = Split-Path -Parent $ScriptDir
 $SourceDir = Join-Path $DocsDir "markdown"
 $OutputDir = Join-Path $DocsDir "pdf"
 $Css = Join-Path $ScriptDir "pdf_style.css"
+$Template = Join-Path $ScriptDir "pdf_template.html"
 
 New-Item -ItemType Directory -Force -Path $OutputDir | Out-Null
 
@@ -48,7 +49,7 @@ foreach ($md in $Files) {
 
   Write-Host "==> $md"
   # 1) Markdown -> HTML
-  pandoc $md -f gfm -t html5 -s --metadata title=" " --resource-path="$dir;$DocsDir" -o $html
+  pandoc $md -f gfm -t html5 -s --template=$Template --metadata title=" " --resource-path="$dir;$DocsDir" -o $html
   # 2) HTML -> PDF met stylesheet
   weasyprint -s $Css $html $pdf
   Remove-Item $html -Force

@@ -21,6 +21,7 @@ DOCS_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 SOURCE_DIR="$DOCS_DIR/markdown"
 OUTPUT_DIR="$DOCS_DIR/pdf"
 CSS="$SCRIPT_DIR/pdf_style.css"
+TEMPLATE="$SCRIPT_DIR/pdf_template.html"
 
 mkdir -p "$OUTPUT_DIR"
 
@@ -49,6 +50,7 @@ for md in "${FILES[@]}"; do
   #    --resource-path zorgt dat plaatjes met relatieve paden gevonden worden.
   pandoc "$md" \
     -f gfm -t html5 -s \
+    --template="$TEMPLATE" \
     --metadata title=" " \
     --resource-path="$(dirname "$md"):$DOCS_DIR" \
     -o "$html"
