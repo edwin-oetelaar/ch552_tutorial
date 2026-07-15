@@ -4,7 +4,7 @@ De Markdown-bestanden (`.md`) zijn de bron. De PDF's worden daaruit gegenereerd
 met twee gratis tools:
 
 1. **pandoc** — zet Markdown om naar HTML.
-2. **WeasyPrint** — zet die HTML met de stylesheet `pdf_style.css` om naar PDF.
+2. **WeasyPrint** — zet die HTML met de stylesheet `scripts/pdf_style.css` om naar PDF.
 
 Je bewerkt dus altijd de `.md`, draait het script, en krijgt een verse PDF.
 
@@ -26,31 +26,31 @@ weasyprint --info
 
 ## Bouwen
 
-Zet `build_pdf.sh` (Linux/Mac) of `build_pdf.ps1` (Windows), samen met
-`pdf_style.css`, in dezelfde map als je `.md`-bestanden.
+De Markdown-bronnen staan in `markdown/`. De scripts staan in `scripts/` en
+schrijven de PDF's naar `pdf/`.
 
 **Windows (PowerShell):**
 
 ```powershell
-.\build_pdf.ps1                    # alle *.md in de map
-.\build_pdf.ps1 CH552_Architectuur_Introductie.md   # één bestand
+.\scripts\build_pdf.ps1                         # alle markdown/*.md
+.\scripts\build_pdf.ps1 ch552_architectuur_introductie.md
 ```
 
 **Linux / macOS:**
 
 ```bash
-chmod +x build_pdf.sh              # eenmalig uitvoerrechten geven
-./build_pdf.sh                     # alle *.md in de map
-./build_pdf.sh CH552_Architectuur_Introductie.md    # één bestand
+chmod +x scripts/build_pdf.sh                    # eenmalig uitvoerrechten geven
+./scripts/build_pdf.sh                           # alle markdown/*.md
+./scripts/build_pdf.sh ch552_architectuur_introductie.md
 ```
 
-Elk `naam.md` wordt `naam.pdf`.
+Elk `markdown/naam.md` wordt `pdf/naam.pdf`.
 
 ## Kleine aanpassingen maken
 
 - **Inhoud** (tekst, tabellen, codeblokken): bewerk de `.md` en bouw opnieuw.
 - **Uiterlijk** (lettertype, kleuren, marges, paginanummer): bewerk
-  `pdf_style.css`. Bijvoorbeeld de accentkleur staat op `#0b3d5c` (donkerblauw);
+  `scripts/pdf_style.css`. Bijvoorbeeld de accentkleur staat op `#0b3d5c` (donkerblauw);
   vervang die overal om een andere huisstijlkleur te krijgen. De paginagrootte
   en marges staan bovenaan in het `@page`-blok.
 
@@ -62,8 +62,8 @@ Ja. Verwijs in de Markdown naar een afbeelding met een **relatief pad**:
 ![Blokschema van de 8051](afbeeldingen/blokschema.png)
 ```
 
-Leg het bestand `blokschema.png` dan in een submap `afbeeldingen/` naast je
-`.md`. Het script geeft pandoc de juiste zoekmap mee (`--resource-path`), zodat
+Leg het bestand `blokschema.png` dan in `docs/afbeeldingen/`. Het script geeft
+pandoc de juiste zoekmap mee (`--resource-path`), zodat
 WeasyPrint de plaatjes vindt en insluit in de PDF.
 
 Tips voor plaatjes:
@@ -79,7 +79,9 @@ Tips voor plaatjes:
 
 | Bestand | Functie |
 |---|---|
-| `*.md` | Bronteksten (bewerk deze) |
-| `pdf_style.css` | Opmaak/stijl van de PDF |
-| `build_pdf.sh` | Buildscript voor Linux/macOS |
-| `build_pdf.ps1` | Buildscript voor Windows/PowerShell |
+| `markdown/*.md` | Bronteksten (bewerk deze) |
+| `pdf/*.pdf` | Gegenereerde PDF's |
+| `afbeeldingen/` | Afbeeldingen voor Markdown en PDF |
+| `scripts/pdf_style.css` | Opmaak/stijl van de PDF |
+| `scripts/build_pdf.sh` | Buildscript voor Linux/macOS |
+| `scripts/build_pdf.ps1` | Buildscript voor Windows/PowerShell |

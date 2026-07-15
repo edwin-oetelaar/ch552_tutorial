@@ -230,10 +230,12 @@ A possible project structure is:
 ```text
 .
 ├── docs/
+│   ├── afbeeldingen/
+│   ├── board/
 │   ├── datasheets/
-│   ├── architecture/
-│   ├── register-notes/
-│   └── exercises/
+│   ├── markdown/
+│   ├── pdf/
+│   └── scripts/
 ├── examples/
 │   ├── 00-reset-vector/
 │   ├── 01-startup/
@@ -718,4 +720,3 @@ Edwin van den Oetelaar
 
 Fontys University of Applied Sciences
 High Tech Embedded Software
-

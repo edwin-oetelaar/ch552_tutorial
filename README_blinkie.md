@@ -52,10 +52,10 @@ After installation, add the SDCC `bin` directory to the system `PATH`.
 * `Makefile`
   Contains the build instructions.
 
-* `CH552_Datasheet_EN.pdf`
+* `docs/datasheets/ch552_datasheet_en.pdf`
   CH552 datasheet containing the hardware description and register map.
 
-* `HEX_FORMAT.md`
+* `docs/markdown/hex_format.md`
   Explains the Intel HEX format and how compiled code can be related to machine code and assembly.
 
 ---

@@ -2,8 +2,8 @@
 
 Dit document biedt didactische handvatten, discussiepunten en achtergrondinformatie voor de docent om de concepten in het `ch552_blink` project uit te leggen aan studenten.
 
-*   **Datasheet-referentie:** `docs/CH552_Datasheet_EN.pdf`
-*   **Intel HEX documentatie:** `docs/HEX_FORMAT.md`
+*   **Datasheet-referentie:** `docs/datasheets/ch552_datasheet_en.pdf`
+*   **Intel HEX documentatie:** `docs/markdown/hex_format.md`
 
 ---
 
