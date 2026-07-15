@@ -1,0 +1,119 @@
+@page {
+  size: A4;
+  margin: 22mm 20mm 20mm 20mm;
+  @bottom-center {
+    content: counter(page) " / " counter(pages);
+    font-family: 'DejaVu Sans', sans-serif;
+    font-size: 8pt;
+    color: #888;
+  }
+}
+
+body {
+  font-family: 'DejaVu Serif', Georgia, serif;
+  font-size: 10.5pt;
+  line-height: 1.5;
+  color: #1a1a1a;
+  max-width: none;
+}
+
+h1 {
+  font-family: 'DejaVu Sans', sans-serif;
+  font-size: 22pt;
+  color: #0b3d5c;
+  border-bottom: 3px solid #0b3d5c;
+  padding-bottom: 6px;
+  margin-top: 0;
+}
+
+h2 {
+  font-family: 'DejaVu Sans', sans-serif;
+  font-size: 15pt;
+  color: #0b3d5c;
+  margin-top: 1.6em;
+  border-bottom: 1px solid #cbd5e0;
+  padding-bottom: 3px;
+  page-break-after: avoid;
+}
+
+h3 {
+  font-family: 'DejaVu Sans', sans-serif;
+  font-size: 12pt;
+  color: #1a5276;
+  margin-top: 1.2em;
+  page-break-after: avoid;
+}
+
+p { margin: 0.5em 0; }
+
+em { color: #444; }
+
+a { color: #1a5276; text-decoration: none; word-break: break-all; }
+
+code {
+  font-family: 'DejaVu Sans Mono', monospace;
+  font-size: 9pt;
+  background: #eef2f5;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+pre {
+  background: #1e2733;
+  color: #e6edf3;
+  font-family: 'DejaVu Sans Mono', monospace;
+  font-size: 8.5pt;
+  line-height: 1.4;
+  padding: 10px 12px;
+  border-radius: 6px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  page-break-inside: avoid;
+}
+
+pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: 8.5pt;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+  font-size: 9.5pt;
+  page-break-inside: avoid;
+}
+
+th {
+  background: #0b3d5c;
+  color: #fff;
+  font-family: 'DejaVu Sans', sans-serif;
+  text-align: left;
+  padding: 6px 8px;
+}
+
+td {
+  border: 1px solid #cbd5e0;
+  padding: 5px 8px;
+  vertical-align: top;
+}
+
+tr:nth-child(even) td { background: #f4f7f9; }
+
+hr {
+  border: none;
+  border-top: 1px solid #cbd5e0;
+  margin: 1.5em 0;
+}
+
+blockquote {
+  border-left: 4px solid #1a5276;
+  margin: 1em 0;
+  padding: 0.3em 1em;
+  background: #eef2f5;
+  color: #333;
+  font-style: italic;
+}
