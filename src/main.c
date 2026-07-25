@@ -17,7 +17,7 @@ void main() {
 
     while (1) {
         LED_PIN = 1;
-        delay_ms(500);
+        delay_ms(200);
         LED_PIN = 0;
         delay_ms(500);
     }
